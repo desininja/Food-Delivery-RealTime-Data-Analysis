@@ -25,7 +25,7 @@ jdbc_jar_s3_path = "s3://food-delivery-data-analysis-bucket/redshift-connector-j
 redshift_user = Variable.get("redshift_user")
 redshift_password = Variable.get("redshift_password")
 aws_access_key = Variable.get("aws_access_key")
-aws_secret_key = Variable.get("aws_sercret_key")
+aws_secret_key = Variable.get("aws_secret_key")
 
 step_adder = EmrAddStepsOperator(
     task_id = 'add_step',
