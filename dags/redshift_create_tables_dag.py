@@ -1,9 +1,8 @@
 from airflow import DAG
 from airflow.providers.amazon.aws.transfers.s3_to_redshift import S3ToRedshiftOperator
-from airflow.providers.amazon.aws.operators.redshift import RedshiftSQLOperator
 from airflow.providers.postgres.operators.postgres import PostgresOperator
-from datetime import timedelta
 from airflow.utils.dates import days_ago
+from datetime import timedelta
 from airflow.operators.dagrun_operator import TriggerDagRunOperator
 
 
