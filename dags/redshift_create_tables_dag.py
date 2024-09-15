@@ -1,5 +1,5 @@
 from airflow import DAG
-from airflow.providers.amazon.aws.transfer.s3_to_redshift import S3ToRedshiftOperator
+from airflow.providers.amazon.aws.transfers.s3_to_redshift import S3ToRedshiftOperator
 from airflow.providers.amazon.aws.operators.redshift import RedshiftSQLOperator
 from airflow.providers.postgres.operators.postgres import PostgresOperator
 from datetime import timedelta
@@ -141,7 +141,7 @@ with DAG('create_and_load_dim',
         schema = 'food_delivery_datamart',
         table = 'dimRestaurants',
         s3_bucket = 'food-delivery-data-analysis-bucket',
-        s3_key = 'dims/dimRestaurants',
+        s3_key = 'dims/dimRestaurants.csv',
         copy_options =['CSV','IGNORE HEADER 1','QUOTE as \'"\''],
         aws_conn_id = 'aws_default',
         redshift_conn_id = 'redshift_connection_id',
@@ -152,7 +152,7 @@ with DAG('create_and_load_dim',
         schema = 'food_delivery_datamart',
         table = 'dimDeliveryRiders',
         s3_bucket = 'food-delivery-data-analysis-bucket',
-        s3_key = 'dims/dimDeliveryRiders',
+        s3_key = 'dims/dimDeliveryRiders.csv',
         copy_options = ['CSV','IGNORE HEADER 1','QUOTE as \'"\''],
         aws_conn_id = 'aws_default',
         redshift_conn_id= 'redshift_connection_id',
