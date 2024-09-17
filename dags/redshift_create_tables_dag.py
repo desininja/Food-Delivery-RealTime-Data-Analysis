@@ -92,7 +92,7 @@ with DAG('create_and_load_dim',
         task_id = 'create_dimDeliveryRiders_table',
         postgres_conn_id = 'redshift_connection_id',
         sql="""
-            CREATE TABLE food_delivery_datamart.dimDeliveryRider (
+            CREATE TABLE food_delivery_datamart.dimDeliveryRiders (
             RiderID INT PRIMARY KEY,
             RiderName VARCHAR(255),
             RiderPhone VARCHAR(50),
