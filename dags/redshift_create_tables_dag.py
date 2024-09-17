@@ -98,7 +98,7 @@ with DAG('create_and_load_dim',
             RiderPhone VARCHAR(50),
             RiderVehicleType VARCHAR(50),
             VehicleID VARCHAR(50),
-            RiderRating DEIMAL(3,1)
+            RiderRating DECIMAL(3,1)
             );
             """,
     )
