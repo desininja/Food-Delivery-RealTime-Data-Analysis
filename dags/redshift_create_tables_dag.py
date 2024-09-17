@@ -41,7 +41,7 @@ with DAG('create_and_load_dim',
 
     drop_dimDeliveryRiders = PostgresOperator(
         task_id = 'drop_dimDelivery_Riders_table',
-        postgres_conn_id ='redshfit_connection_id',
+        postgres_conn_id ='redshift_connection_id',
         sql = "DROP TABLE IF EXISTS food_delivery_datamart.dimDeliveryRiders;",
     )
 
@@ -141,7 +141,7 @@ with DAG('create_and_load_dim',
         table = 'dimRestaurants',
         s3_bucket = 'food-delivery-data-analysis-bucket',
         s3_key = 'dims/dimRestaurants.csv',
-        copy_options =['CSV','IGNORE HEADER 1','QUOTE as \'"\''],
+        copy_options =['CSV','IGNOREHEADER 1','QUOTE as \'"\''],
         aws_conn_id = 'aws_default',
         redshift_conn_id = 'redshift_connection_id',
     )
