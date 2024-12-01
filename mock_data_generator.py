@@ -11,7 +11,7 @@ from faker import Faker
 print('starting script')
 fake = Faker()
 kinesis_client = boto3.client('kinesis')
-stream_name = 'incoming-food-order-data'
+stream_name = 'real-time-food-data'
 
 def get_script_path():
     return os.path.dirname(os.path.realpath(sys.argv[0]))

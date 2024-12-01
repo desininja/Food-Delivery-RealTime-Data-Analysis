@@ -27,7 +27,7 @@ def get_records(kinesis_client, shard_iterator, limit=100):
 def main():
     print('Starting script')
     
-    stream_name = 'incoming-food-order-data'
+    stream_name = 'real-time-food-data'
     shard_id = 'shardId-000000000000'  # Replace with your actual shard ID
 
     # Define the specific timestamp (UTC)

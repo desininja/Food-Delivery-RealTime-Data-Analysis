@@ -6,13 +6,13 @@ phases:
   build:
     commands:
       - echo "Copying DAG files to S3..."
-      - aws s3 cp --recursive ./dags s3://airflow-project-folder/dags/
+      - aws s3 cp --recursive ./dags s3://dags-for-projects/dags/
       - echo "Copying dim data files to S3..."
-      - aws s3 cp --recursive ./data_for_dims s3://food-delivery-data-analysis-bucket/dims/
+      - aws s3 cp --recursive ./data_for_dims s3://dimensional-data-for-load/
       - echo "Copying pyspark scripts to S3..."
-      - aws s3 cp --recursive ./scripts s3://food-delivery-data-analysis-bucket/pyspark-scripts/
+      - aws s3 cp --recursive ./scripts s3://pyspark-scripts-for-projects/scripts-folder/
       - echo "Copying redshift jar file to S3..."
-      - aws s3 cp --recursive ./jars s3://food-delivery-data-analysis-bucket/redshift-connector-jar/
+      - aws s3 cp --recursive ./jars s3://dimensional-data-for-load/redshift-connector-jar/
   post_build:
     commands:
       - echo "Build and deployment process complete!!!"
