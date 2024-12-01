@@ -12,12 +12,12 @@ args = parser.parse_args()
 
 
 appName = 'KinesisToRedshift'
-kinesisStreamName = "incoming-food-order-data"
+kinesisStreamName = "real-time-food-data"
 kinesisRegion = "us-east-1"
 checkpointLocation = "s3://k-stream-checkpointing/kinesisToRedshift/"
-redshiftJdbcUrl = f"jdbc:redshift://redshift-cluster-projects.csd0yq5yovab.us-east-1.redshift.amazonaws.com:5439/dev"  #Need to fix this
+redshiftJdbcUrl = f"jdbc:redshift://redshift-cluster-1.ctxisia4pstb.us-east-1.redshift.amazonaws.com:5439/dev"  #Need to fix this
 redshiftTable = "food_delivery_datamart.factOrders"
-tempDir = "s3://redshift-temp-data-projects/temp-data/streaming_temp/"
+tempDir = "s3://pyspark-scripts-for-projects/temp-folder/"
 
 #Schema of the  incoming JSON data from Kinesis
 

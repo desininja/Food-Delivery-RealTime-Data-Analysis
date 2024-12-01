@@ -32,30 +32,31 @@ with DAG('create_and_load_dim',
         sql = "CREATE SCHEMA IF NOT EXISTS food_delivery_datamart;",
     )
 
-    #drop tables if they exist
+# Drop tables with CASCADE to handle dependencies
     drop_dimCustomers = PostgresOperator(
-        task_id = 'drop_dimCustomers_table',
-        postgres_conn_id = 'redshift_connection_id',
-        sql = "DROP TABLE IF EXISTS food_delivery_datamart.dimCustomers;",
+        task_id='drop_dimCustomers_table',
+        postgres_conn_id='redshift_connection_id',
+        sql="DROP TABLE IF EXISTS food_delivery_datamart.dimCustomers CASCADE;",
     )
 
     drop_dimDeliveryRiders = PostgresOperator(
-        task_id = 'drop_dimDelivery_Riders_table',
-        postgres_conn_id ='redshift_connection_id',
-        sql = "DROP TABLE IF EXISTS food_delivery_datamart.dimDeliveryRiders;",
+        task_id='drop_dimDelivery_Riders_table',
+        postgres_conn_id='redshift_connection_id',
+        sql="DROP TABLE IF EXISTS food_delivery_datamart.dimDeliveryRiders CASCADE;",
     )
 
     drop_dimRestaurants = PostgresOperator(
-        task_id = 'drop_dimRestaurants_table',
-        postgres_conn_id = 'redshift_connection_id',
-        sql = "DROP TABLE IF EXISTS food_delivery_datamart.dimRestaurants;",
+        task_id='drop_dimRestaurants_table',
+        postgres_conn_id='redshift_connection_id',
+        sql="DROP TABLE IF EXISTS food_delivery_datamart.dimRestaurants CASCADE;",
     )
 
     drop_factOrders = PostgresOperator(
-        task_id = 'drop_factOrders_table',
-        postgres_conn_id = 'redshift_connection_id',
-        sql = "DROP TABLE IF EXISTS food_delivery_datamart.factOrders;",
+        task_id='drop_factOrders_table',
+        postgres_conn_id='redshift_connection_id',
+        sql="DROP TABLE IF EXISTS food_delivery_datamart.factOrders CASCADE;",
     )
+
 
     # Create dimension and fact tables
 
@@ -128,8 +129,8 @@ with DAG('create_and_load_dim',
         task_id = 'load_data_in_dimCustomers_table',
         schema = 'food_delivery_datamart',
         table = 'dimCustomers',
-        s3_bucket = 'food-delivery-data-analysis-bucket',
-        s3_key = 'dims/dimCustomers.csv',
+        s3_bucket = 'dimensional-data-for-load',
+        s3_key = 'dimCustomers.csv',
         copy_options = ['CSV','IGNOREHEADER 1','QUOTE as \'"\''],
         aws_conn_id = 'aws_default',
         redshift_conn_id = 'redshift_connection_id',
@@ -139,8 +140,8 @@ with DAG('create_and_load_dim',
         task_id = 'load_data_in_dimRestaurants_table',
         schema = 'food_delivery_datamart',
         table = 'dimRestaurants',
-        s3_bucket = 'food-delivery-data-analysis-bucket',
-        s3_key = 'dims/dimRestaurants.csv',
+        s3_bucket = 'dimensional-data-for-load',
+        s3_key = 'dimRestaurants.csv',
         copy_options =['CSV','IGNOREHEADER 1','QUOTE as \'"\''],
         aws_conn_id = 'aws_default',
         redshift_conn_id = 'redshift_connection_id',
@@ -150,8 +151,8 @@ with DAG('create_and_load_dim',
         task_id = 'load_data_in_dimDeliveryRiders_table',
         schema = 'food_delivery_datamart',
         table = 'dimDeliveryRiders',
-        s3_bucket = 'food-delivery-data-analysis-bucket',
-        s3_key = 'dims/dimDeliveryRiders.csv',
+        s3_bucket = 'dimensional-data-for-load',
+        s3_key = 'dimDeliveryRiders.csv',
         copy_options = ['CSV','IGNOREHEADER 1','QUOTE as \'"\''],
         aws_conn_id = 'aws_default',
         redshift_conn_id= 'redshift_connection_id',
