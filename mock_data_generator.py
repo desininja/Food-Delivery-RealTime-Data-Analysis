@@ -62,7 +62,7 @@ def generate_data(orderID,customerID,riderID, restID):
 if __name__ =='__main__':
     customerIDs, riderIDs, restIDs = get_all_ids()
 
-    for orderID in range(600,11000):
+    for orderID in range(800,11000):
                                    
         customerID= random.choice(customerIDs)
         riderID = random.choice(riderIDs)
@@ -71,4 +71,4 @@ if __name__ =='__main__':
         mock_data=generate_data(orderID,customerID,riderID,restID)
         print(mock_data)
         send_data_kinesis(stream_name,mock_data)
-        time.sleep(1)
+        time.sleep(3)
