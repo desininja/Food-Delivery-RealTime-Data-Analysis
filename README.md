@@ -119,7 +119,7 @@ The processed data stored in Redshift can be visualized using Amazon QuickSight.
 3. Deploy Airflow DAGs:
    - Upload `redshift_create_tables_dag.py` and `spark_streaming_dag.py` to your MWAA DAGs folder.
 
-4. Download the [Redshift JDBC Driver](https://docs.aws.amazon.com/redshift/latest/mgmt/configure-jdbc-connection.html) and place it in the EMR cluster classpath.
+4. Download the [Redshift JDBC Driver](https://docs.aws.amazon.com/redshift/latest/mgmt/configure-jdbc-connection.html) and place it in the EMR cluster classpath or pass the S3 location of the jar file as `--jar` while triggering the Spark job.
 
 5. Create required AWS resources:
    - Kinesis Data Stream.
